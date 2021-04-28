@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/17401381/debianzing-a-python-program-to-get-a-deb
