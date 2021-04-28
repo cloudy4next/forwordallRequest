@@ -17,7 +17,7 @@ proxyBinding = '127.0.0.1'
 # //  specifiy the ip and port of website only want whitelist //
 #ip = 123.321.12.421
 #port = 80
-proxyForwardTo = ('ip', 'port')
+proxyForwardTo = ('129.162.23.165', '443')
 proxyAuthentication = False 
 
 class Authenticate:
