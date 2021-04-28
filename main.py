@@ -11,6 +11,8 @@ if __name__ == '__main__':
     freeze_support()
     proxyPort = 8888
     proxyBinding = '127.0.0.1'
+    proxyForwardTo = ('139.162.23.165', 443)
+    proxyAuthentication = False 
 
     print(' * ForwardProxy')
     proxy = Proxy(proxyBinding, proxyPort)

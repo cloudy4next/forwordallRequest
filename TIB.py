@@ -2,20 +2,20 @@ import sys
 import time
 import socket
 import select
-import os
-
-proxy = '127.0.0.1:8888'
-
-# dict(http='127.0.0.1:8888', https='127.0.0.1:8888')
-os.environ['http_proxy'] = proxy 
-os.environ['HTTP_PROXY'] = proxy
-os.environ['https_proxy'] = proxy
-os.environ['HTTPS_PROXY'] = proxy
-
+# from winproxy import ProxySetting
+import tkinter
+from tkinter import *
+import tkinter.messagebox
+import webbrowser
+import urllib.request
+from PIL import ImageGrab
+import threading
+from multiprocessing import freeze_support
+# Socket options
 delay = 0.0001
 buffer_size = 4096
 
-# Socket options
+# Proxy options
 proxyPort = 8888
 proxyBinding = '127.0.0.1'
 proxyForwardTo = ('139.162.23.165', 443)
@@ -166,3 +166,127 @@ class Proxy:
     def on_recv(self):
         data = self.data
         self.channel[self.s].send(data)
+
+    # def app(self):
+
+    #     # proxy = Proxy(proxyBinding, proxyPort)
+    #     # print(' * Listening on: ' + str(proxyBinding) + ' : ' + str(proxyPort))
+    #     # print(' * Forwarding to: ' + str(proxyForwardTo[0]) + ' : ' + str(proxyForwardTo[1]))
+
+    #     # def blocking_function():
+    #     #     print("blocking function starts")
+    #     #     time.sleep(3)
+            
+    #     #     print("blocking function ends")
+    #     # def start_new_thread():
+    #     #     thread = threading.Thread(target=blocking_function)
+    #     #     # webbrowser.open(url,new=new)
+    #     #     thread.start()
+    #     #     proxy.main_loop()
+    #     #     return webbrowser.open(url,new=new)
+
+    #     root = tkinter.Tk()
+
+    #     root.geometry('800x500')
+    #     root.title('TIB HRMS')
+    #     root.iconbitmap('C:\\Users\\cloudy\\Desktop\\browser\\TIB_icon.ico')
+    #     canvas= Canvas(root, width= 1000, height= 800, bg="white")
+
+    #     new = 1
+    #     url = 'https://127.0.0.1:8888/login'
+    #     def urls():
+    #          webbrowser.open(url,new=new)
+    #     def helloCallBack():
+    #         tkinter.messagebox.showinfo( "Hello", "I'm TIB The GOD-Father of Crime")
+
+
+    #     li ="This is a Demo app, Follow the instructions to give Examination"
+    #     canvas.create_text(400, 50, text= li,fill=
+    #     "black",font=('Helvetica 15 bold'))
+    #     canvas.pack()
+
+
+
+    #     button = Button(root, text = "This opens Google",command=urls)
+    #     button0 = tkinter.Button(text ="Instrauctions", command = helloCallBack,height = 1, 
+    #             width = 10)
+
+    #     button0.place(relx=0.4, rely=0.5, anchor=CENTER)
+    #     button.place(relx=0.6, rely=0.5, anchor=CENTER)
+
+    #     root.mainloop()
+        
+def app():
+        root = tkinter.Tk()
+
+        root.geometry('800x500')
+        root.title('TIB HRMS')
+        # root.iconbitmap('C:\\Users\\cloudy\\Desktop\\browser\\icon.ico')
+        canvas= Canvas(root, width= 1000, height= 800, bg="white")
+
+        new = 1
+        url = 'https://127.0.0.1:8888/login'
+
+        def urls():
+             webbrowser.open(url,new=new)
+
+        def message():
+            tkinter.messagebox.showinfo( "Hello Applicant ", "Please Turn of Dual monitor ")
+
+        def helloCallBack():
+            tkinter.messagebox.showinfo( "Hello", "I'm TIB The GOD-Father of Crime")
+
+        snapshot = ImageGrab.grab()
+        wid, hgt = snapshot.size
+        # if wid>1920 & hgt >1080:
+        #     button = Button(root, text = "Go To exam",command=message)
+        #     button.place(relx=0.6, rely=0.5, anchor=CENTER)
+
+        # else:
+        button = Button(root, text = "Go To exam",command=urls)
+        button.place(relx=0.6, rely=0.5, anchor=CENTER)
+
+
+
+        li ="This is a Demo app, Follow the instructions to give Examination"
+        canvas.create_text(400, 50, text= li,fill=
+        "black",font=('Helvetica 15 bold'))
+        canvas.pack()
+
+
+
+        button0 = tkinter.Button(text ="Instrauctions", command = helloCallBack,height = 1, 
+                width = 10)
+
+        button0.place(relx=0.4, rely=0.5, anchor=CENTER)
+
+        root.mainloop()
+
+
+if __name__ == '__main__':
+    freeze_support()
+    # try:
+    #     p = ProxySetting()
+    #     p.registry_read()
+    #     p.enable = True
+    #     # p.server = dict(http='127.0.0.1:8888', https='127.0.0.1:8888')
+    #     p.server = dict(http='139.162.23.165:443', https='139.162.23.165:443')
+    #     p.registry_write()
+    # except Exception as e:
+    #     print(e)
+
+    # print(' * ForwardProxy')
+    proxy = Proxy(proxyBinding, proxyPort)
+    print(' * Listening on: ' + str(proxyBinding) + ' : ' + str(proxyPort))
+    print(' * Forwarding to: ' + str(proxyForwardTo[0]) + ' : ' + str(proxyForwardTo[1]))
+    # proxy.main_loop()
+    # proxy.app()
+
+    ## // multi-threading //
+    t1 = threading.Thread(target=app)
+    t2 = threading.Thread(target=proxy.main_loop)
+    t1.start()
+    t2.start()
+
+
+        
