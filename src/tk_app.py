@@ -12,7 +12,7 @@ def app():
 
         root.geometry('800x500')
         root.title('TIB HRMS')
-        root.iconbitmap('icon.ico')
+        # root.iconbitmap('icon.ico')
         canvas= Canvas(root, width= 1000, height= 800, bg="white")
 
         new = 1
@@ -29,7 +29,8 @@ def app():
 
         snapshot = ImageGrab.grab()
         wid, hgt = snapshot.size
-        if wid>1920 & hgt >1080:
+        print(hgt,wid)
+        if wid>1920 & hgt > 1200:
             button = Button(root, text = "Go To exam",command=message)
             button.place(relx=0.6, rely=0.5, anchor=CENTER)
 

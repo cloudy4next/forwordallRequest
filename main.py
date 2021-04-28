@@ -1,7 +1,7 @@
 from src.utils import *
 from src.tk_app import app
 from multiprocessing import freeze_support
-from winproxy import ProxySetting
+# from winproxy import ProxySetting
 import threading
 
 
@@ -9,14 +9,8 @@ import threading
 
 if __name__ == '__main__':
     freeze_support()
-    try:
-        p = ProxySetting()
-        p.registry_read()
-        p.enable = True
-        p.server = dict(http='139.162.23.165:443', https='139.162.23.165:443')
-        p.registry_write()
-    except Exception as e:
-        print(e)
+    proxyPort = 8888
+    proxyBinding = '127.0.0.1'
 
     print(' * ForwardProxy')
     proxy = Proxy(proxyBinding, proxyPort)
